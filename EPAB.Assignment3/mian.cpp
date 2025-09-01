@@ -35,52 +35,47 @@ int main()
 	}
 
 
-	cout << "Do you want to fix any mistakes? (y/n): ";
+	cout << "\nDo you want to fix any mistakes? (y/n): ";
 	cin >> choice;
-	if (choice == "y")
+
+	while (choice == "y")
 	{
-		choice = "";
+		//choice = "";
 
-		int rowToFix = 0;
+		int IndexToFix = 0;
 		cout << "Which entry would you like to fix? (1-6): ";
-		cin >> rowToFix;
-		cout << "Enter a " << entries[rowToFix - 1].type << ": ";
-		cin >> entries[rowToFix - 1].input;
+		cin >> IndexToFix;
 
-		cout << "Do you want to fix any mistakes? (y/n): ";
-		cin >> choice;
-		
-		if (choice == "y")
+		if (IndexToFix > 0 && IndexToFix <=6 )
 		{
-		    rowToFix = 0;
-			cout << "Which entry would you like to fix? (1-6): ";
-			cin >> rowToFix;
-			cout << "Enter a " << entries[rowToFix - 1].type << ": ";
-			cin >> entries[rowToFix - 1].input;
-
-			cout << "Do you want to fix any mistakes? (y/n): ";
-			cin >> choice;
+			cout << "\nEnter a " << entries[IndexToFix - 1].type << ": ";
+			cin >> entries[IndexToFix - 1].input;
 		}
 		else
 		{
-			cout << "\n\nYour Mad Lib: \n\n";
-			cout << "Yesterday, I went to "<< entries[0].input << " and saw a";
-			cout << entries[1].input << " " << entries[2].input << ". ";
-			cout << "I asked " << entries[3].input << " if he wanted to " << entries[4].input <<", ";
-			cout << "but he said he was busy walking his pet " << entries[5].input <<".";
+			while (IndexToFix < 0 || IndexToFix >6) {
+				cout << "\nInvalid entry number! Please enter a number from 1 to " << EntrySize << "\n\n";
+				cout << "Which entry would you like to fix? (1-6): ";
+				cin >> IndexToFix;
+			}
 
+			if (IndexToFix > 0 && IndexToFix <= 6)
+			{
+				cout << "\nEnter a " << entries[IndexToFix - 1].type << ": ";
+				cin >> entries[IndexToFix - 1].input;
+			}
+			
 		}
-
+		
+		cout << "Do you want to fix any mistakes? (y/n): ";
+		cin >> choice;
 	}
-	else
-	{
-		cout << "\n\nYour Mad Lib: \n\n";
-		cout << "Yesterday, I went to " << entries[0].input << " and saw a";
-		cout << entries[1].input << " " << entries[2].input << ". ";
-		cout << "I asked " << entries[3].input << " if he wanted to " << entries[4].input << ",";
-		cout << "but he said he was busy walking his pet " << entries[5].input << ".";
-
-	}
+		// Print Mad Lib
+	cout << "\n\nYour Mad Lib:\n\n";
+	cout << "Yesterday, I went to " << entries[0].input << " and saw a ";
+	cout << entries[1].input << " " << entries[2].input << ". ";
+	cout << "I asked " << entries[3].input << " if he wanted to " << entries[4].input << ", ";
+	cout << "but he said he was busy walking his pet " << entries[5].input << ".\n";
 
 	(void)_getch();
 	return 0;
