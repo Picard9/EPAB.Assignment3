@@ -35,41 +35,53 @@ int main()
 	// Ask the user to enter words for each entry
 	for (int i = 0; i < EntrySize; i++)
 	{
+		//Access the first character
+		char firstChar = tolower(entries[i].type[0]);
 
-		cout << (i + 1) << ". " << "Enter a " << entries[i].type << ": ";
+		//Check whether the first character is a vowel
+		if (firstChar == 'a' || firstChar == 'e' || firstChar == 'i' || firstChar == 'o' || firstChar == 'u')
+			cout << (i + 1) << ". " << "Enter an " << entries[i].type << ": ";
+		else
+			cout << (i + 1) << ". " << "Enter a " << entries[i].type << ": ";
+
 		cin >> entries[i].input;
 	}
 
-	//Allow the user to fix multiple mistakes if needed.
+	//Allow the user to fix mistakes if needed.
 	cout << "\nDo you want to fix any mistakes? (y/n): ";
 	cin >> choice;
 
 	while (choice == "y")
 	{
 
-		//Allow the user to re-enter a word for a specific entry.
+		//Allow the user to re-enter a word for a specific entry to fix.
 		int IndexToFix = 0;
 		cout << "Which entry would you like to fix? (1-6): ";
 		cin >> IndexToFix;
 
-		if (IndexToFix > 0 && IndexToFix <=6 )
-		{
-			cout << "\nEnter a " << entries[IndexToFix - 1].type << ": ";
-			cin >> entries[IndexToFix - 1].input;
-		}
-		else
-		{
-			// If invalid number is entered, keep asking until it's valid
-			while (IndexToFix < 0 || IndexToFix >6) {
-				cout << "\nInvalid entry number! Please enter a number from 1 to " << EntrySize << "\n\n";
-				cout << "Which entry would you like to fix? (1-6): ";
-				cin >> IndexToFix;
-			}
-			// Once valid, replace the chosen entry
-				cout << "\nEnter a " << entries[IndexToFix - 1].type << ": ";
-				cin >> entries[IndexToFix - 1].input;
+		// If invalid number is entered, keep asking until it's valid
+		while (IndexToFix < 0 || IndexToFix > EntrySize) {
+			cout << "\nInvalid entry number! Please enter a number from 1 to " << EntrySize << "\n\n";
+			cout << "Which entry would you like to fix? (1-6): ";
+			cin >> IndexToFix;
 		}
 
+		//Access the first character
+		char firstChar = tolower(entries[IndexToFix - 1].type[0]);
+
+
+		if (IndexToFix > 0 && IndexToFix <=6 )
+		{
+			//Check whether the first character is a vowel
+			if (firstChar == 'a' || firstChar == 'e' || firstChar == 'i' || firstChar == 'o' || firstChar == 'u')
+				cout << "\nEnter an " << entries[IndexToFix-1].type << ": ";
+			else
+				cout << "\nEnter a " << entries[IndexToFix-1].type << ": ";
+
+		}
+
+
+		cin >> entries[IndexToFix - 1].input;
 
 
 		cout << "Do you want to fix any mistakes? (y/n): ";
