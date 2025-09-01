@@ -14,9 +14,14 @@ struct Entry
 
 int main()
 {
-
+	// Variable to store user's choice whether to fix mistakes
 	string choice;
+
+
+	//Array's Size Declaration 
 	const int EntrySize = 6;
+
+	//Array initialization
 	Entry entries[] =
 	{
 		{"place", ""},
@@ -27,6 +32,7 @@ int main()
 		{"animal", ""}
 	};
 
+	// Ask the user to enter words for each entry
 	for (int i = 0; i < EntrySize; i++)
 	{
 
@@ -34,14 +40,14 @@ int main()
 		cin >> entries[i].input;
 	}
 
-
+	//Allow the user to fix multiple mistakes if needed.
 	cout << "\nDo you want to fix any mistakes? (y/n): ";
 	cin >> choice;
 
 	while (choice == "y")
 	{
-		//choice = "";
 
+		//Allow the user to re-enter a word for a specific entry.
 		int IndexToFix = 0;
 		cout << "Which entry would you like to fix? (1-6): ";
 		cin >> IndexToFix;
@@ -53,24 +59,24 @@ int main()
 		}
 		else
 		{
+			// If invalid number is entered, keep asking until it's valid
 			while (IndexToFix < 0 || IndexToFix >6) {
 				cout << "\nInvalid entry number! Please enter a number from 1 to " << EntrySize << "\n\n";
 				cout << "Which entry would you like to fix? (1-6): ";
 				cin >> IndexToFix;
 			}
-
-			if (IndexToFix > 0 && IndexToFix <= 6)
-			{
+			// Once valid, replace the chosen entry
 				cout << "\nEnter a " << entries[IndexToFix - 1].type << ": ";
 				cin >> entries[IndexToFix - 1].input;
-			}
-			
 		}
-		
+
+
+
 		cout << "Do you want to fix any mistakes? (y/n): ";
 		cin >> choice;
 	}
-		// Print Mad Lib
+	
+	// Display the completed story to the user.
 	cout << "\n\nYour Mad Lib:\n\n";
 	cout << "Yesterday, I went to " << entries[0].input << " and saw a ";
 	cout << entries[1].input << " " << entries[2].input << ". ";
