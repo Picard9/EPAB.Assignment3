@@ -83,7 +83,7 @@ int main()
 
 		cin >> entries[IndexToFix - 1].input;
 
-
+		//Allow the user to fix mistakes if needed.
 		cout << "Do you want to fix any mistakes? (y/n): ";
 		cin >> choice;
 	}
